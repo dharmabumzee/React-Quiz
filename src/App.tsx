@@ -52,7 +52,7 @@ const App = () => {
 
       // Add score if answer is correct
       if ( correct ) setScore( prev => prev + 1 );
-      
+
       // Save answer in the array for user answers
       const AnswerObject = {
         question: questions[number].question,
@@ -65,7 +65,11 @@ const App = () => {
   };
 
   const nextQuestion = () => {
+    // move on to the next question if it's not the last question
+    const nextQuestion = number + 1;
 
+    nextQuestion === TOTAL_QUESTIONS ? setGameOver(true) : setNumber(nextQuestion);
+   
   }
 
   return (
