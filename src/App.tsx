@@ -1,27 +1,18 @@
 import React, { useState, useContext } from "react";
 import { fetchQuizQuestions } from "./API";
-import {
-  Grommet,
-  Box,
-  Main,
-  Heading,
-  Meter,
-  Text,
-  Paragraph,
-  Button,
-} from "grommet";
+import { Grommet, Box, Meter, Text } from "grommet";
 import { Theme } from "./Theme";
 import "./App.css";
 
 // Components
 import QuestionCard from "./components/QuestionCard";
-import EndGame from "./components/EndGame";
-import StartButton from "./components/StartButton";
 import GetReady from "./components/GetReady";
 import NextQuestion from "./components/NextQuestionButton";
+import Welcome from "./components/Welcome";
 
 // Types
 import { QuestionState, Difficulty } from "./API";
+import FinalScore from "./components/FinalScore";
 
 export type AnswerObject = {
   question: string;
@@ -118,17 +109,19 @@ const App = () => {
         animation="fadeIn"
         hoverIndicator={false}
       >
-        {/* <Main
-          fill="vertical"
-          flex="grow"
-          overflow="auto"
-          pad="medium"
-          gap="small"
-          background={{ dark: false }}
-        > */}
         <div className="App">
-          {gameOver || userAnswers.length == TOTAL_QUESTIONS ? (
-            <StartButton startTrivia={startTrivia} />
+          {/* {gameOver || userAnswers.length == TOTAL_QUESTIONS ? (
+            <Welcome startTrivia={startTrivia} />
+          ) : null} */}
+          {userAnswers.length == TOTAL_QUESTIONS ? (
+            <FinalScore
+              score={score}
+              startTrivia={startTrivia}
+              total={TOTAL_QUESTIONS}
+            />
+          ) : null}
+          {gameOver && !loading && userAnswers.length === 0 ? (
+            <Welcome startTrivia={startTrivia} />
           ) : null}
           {loading && <GetReady />}
           {!gameOver && !loading ? (
@@ -162,7 +155,6 @@ const App = () => {
             <NextQuestion nextQuestion={nextQuestion} />
           ) : null}
         </div>
-        {/* </Main> */}
       </Box>
     </Grommet>
   );
