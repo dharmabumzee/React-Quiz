@@ -17,6 +17,7 @@
 .start {
   color: #333333 !important;
   font-weight: 800 !important;
+  /* font-family: Bitter !important; */
 }
 
 .dotted {
@@ -56,4 +57,26 @@ p {
 }
 .next-question-btn-grad:hover {
   background-position: right center;
+}
+
+.box-1 {
+  font-family: "Luckiest Guy", cursive;
+  font-size: calc(31px + 2vmin);
+  margin: 3rem;
+}
+
+.boxes {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.final-score {
+  margin-top: 100px !important;
+}
+
+.animate__animated.animate__flipInX {
+  --animate-duration: 5s;
 }
